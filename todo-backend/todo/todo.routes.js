@@ -131,6 +131,7 @@ router.post(
           userId: userId,
         }, // i => case sensitive meaning it searches both upper and lowercase characters
       },
+      { $sort: { createdAt: -1 } },
       {
         $skip: skip,
       },
