@@ -1,4 +1,5 @@
 import Login from "../pages/Login";
+import NewComponent from "../pages/Practice";
 import Register from "../pages/Register";
 
 export const guestRoutes = [
@@ -9,5 +10,9 @@ export const guestRoutes = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/practice",
+    element: <NewComponent />,
   },
 ];
