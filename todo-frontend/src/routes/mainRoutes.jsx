@@ -1,4 +1,5 @@
 import AddTodo from "../pages/AddTodo";
+import EditTodo from "../pages/EditTodo";
 import Home from "../pages/Home";
 
 export const mainRoutes = [
@@ -9,5 +10,9 @@ export const mainRoutes = [
   {
     path: "/add-todo",
     element: <AddTodo />,
+  },
+  {
+    path: "/edit-todo/:id",
+    element: <EditTodo />,
   },
 ];
