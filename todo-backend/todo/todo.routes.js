@@ -14,17 +14,7 @@ const router = express.Router();
 router.post(
   "/todo/add",
   validateAccessToken,
-  async (req, res, next) => {
-    const newTodo = req.body;
-
-    try {
-      await todoValidationSchema.validate(newTodo);
-    } catch (error) {
-      return res.status(400).send({ message: error.message });
-    }
-
-    next();
-  },
+  validateReqBody(todoValidationSchema),
   async (req, res) => {
     const newTodo = req.body;
     const user = req.userDetails;
@@ -110,6 +100,41 @@ router.get("/todo/details/:id", validateAccessToken, async (req, res) => {
   todo.userId = undefined;
 
   return res.status(200).send(todo);
+});
+
+// ? update a todo
+
+router.put("/todo/update/:id", validateAccessToken, async (req, res) => {
+  // extract todo id from params
+  const todoId = req.params.id;
+
+  // extract new values from req.body
+  const newValues = req.body;
+  // validate id with mongoIdValidity
+  const isValidMongoId = checkMongoIdValidity(todoId);
+  if (!isValidMongoId) {
+    return res.status(400).send({ message: "Invalid mongo id." });
+  }
+  // check if todo with provided id exists
+  const todo = await Todo.findById(todoId);
+  // if not todo, return error
+  if (!todo) {
+    return res.status(404).send({ message: "Todo does not exist." });
+  }
+  //check todo ownership
+
+  const todoOwner = todo.userId;
+  const tokenOwner = req.userDetails._id; // token Owner is the logged in user
+  const isOwnerOfTodo = todoOwner.equals(tokenOwner);
+  // throw error if ownership fails
+  if (!isOwnerOfTodo) {
+    return res.status(403).send({ message: "You are not owner of this todo." });
+  }
+  // update the todo
+  await Todo.updateOne({ _id: todoId }, { $set: { ...newValues } });
+  // send appropriate response
+
+  return res.status(200).send({ message: "todo updated successfully" });
 });
 
 // ? add skip-limit-search
