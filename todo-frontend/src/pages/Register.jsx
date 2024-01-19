@@ -180,8 +180,10 @@ const Register = () => {
           <Button type="submit" variant="contained">
             Submit
           </Button>
-          <Link to="/login">
-            <Typography>Already registered? Login</Typography>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Typography style={{ fontWeight: "600" }}>
+              Already registered --- Login
+            </Typography>
           </Link>
         </form>
       )}
