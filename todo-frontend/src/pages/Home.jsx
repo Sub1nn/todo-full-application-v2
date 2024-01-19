@@ -112,7 +112,8 @@ const Home = () => {
           color: "#121212",
           fontFamily: "Trebuchet MS, sans-serif",
           fontSize: "3rem",
-          marginBottom: "3rem",
+          marginBottom: "2rem",
+          marginTop: "8rem",
           textShadow:
             "2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3)",
         }}
@@ -152,11 +153,12 @@ const Home = () => {
                   color: "bb3e03",
                   marginBottom: "1rem",
                   fontWeight: "bold",
+                  textAlign: "center",
                 }}
               >
                 {item?.title}
               </Typography>
-              <Typography sx={{ fontWeight: 550 }}>
+              <Typography sx={{ fontWeight: 550, textAlign: "center" }}>
                 {item?.description}
               </Typography>
 
@@ -183,7 +185,9 @@ const Home = () => {
                   aria-label="edit"
                   color="success"
                   sx={{ "&:focus": { outline: "none" } }}
-                  onClick={() => {}}
+                  onClick={() => {
+                    navigate(`/edit-todo/${item._id}`);
+                  }}
                 >
                   <FaEdit />
                 </IconButton>
@@ -192,14 +196,6 @@ const Home = () => {
           );
         })}
       </Grid>
-      <Button
-        variant="contained"
-        onClick={() => {
-          navigate("/add-todo");
-        }}
-      >
-        Add todo
-      </Button>
     </>
   );
 };
