@@ -71,6 +71,7 @@ const Login = () => {
               display: "flex",
               flexDirection: "column",
               width: "40vw",
+              minHeight: "40vh",
               gap: "1.5rem",
               boxShadow: "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px",
               padding: "2rem",
@@ -109,11 +110,16 @@ const Login = () => {
               ) : null}
             </FormControl>
 
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" sx={{ marginTop: 3 }}>
               Submit
             </Button>
-            <Link to="/register">
-              <Typography>New here? Register</Typography>
+            <Link
+              to="/register"
+              style={{ textDecoration: "none", marginTop: "2rem" }}
+            >
+              <Typography style={{ fontWeight: "600" }}>
+                New here --- Register
+              </Typography>
             </Link>
           </form>
         )}
