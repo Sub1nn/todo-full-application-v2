@@ -6,8 +6,15 @@ import "./index.css";
 import { guestRoutes } from "./routes/guestRoutes";
 import { mainRoutes } from "./routes/mainRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
+import MainLayout from "./Components/MainLayout";
 
-const router = createBrowserRouter([...mainRoutes, ...guestRoutes]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [...mainRoutes, ...guestRoutes],
+  },
+]);
 //create a client
 const queryClient = new QueryClient();
 
@@ -16,3 +23,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </QueryClientProvider>
 );
+
+// const router = createBrowserRouter([...mainRoutes, ...guestRoutes]);
