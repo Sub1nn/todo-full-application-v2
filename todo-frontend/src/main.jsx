@@ -15,6 +15,7 @@ const router = createBrowserRouter([
     children: [...mainRoutes, ...guestRoutes],
   },
 ]);
+
 //create a client
 const queryClient = new QueryClient();
 
@@ -23,5 +24,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </QueryClientProvider>
 );
-
-// const router = createBrowserRouter([...mainRoutes, ...guestRoutes]);
