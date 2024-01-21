@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FaEdit } from "react-icons/fa";
 import Popover from "@mui/material/Popover";
+import dayjs from "dayjs";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -160,6 +161,9 @@ const Home = () => {
               </Typography>
               <Typography sx={{ fontWeight: 550, textAlign: "center" }}>
                 {item?.description}
+              </Typography>
+              <Typography sx={{ textAlign: "center", color: "gray" }}>
+                {dayjs(item?.date).format("MMMM DD, YYYY")}
               </Typography>
 
               <ButtonGroup
