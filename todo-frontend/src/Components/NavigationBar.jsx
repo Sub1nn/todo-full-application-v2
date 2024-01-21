@@ -24,6 +24,11 @@ const NavigationBar = () => {
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
+  const handleLogout = () => {
+    localStorage.clear();
+
+    navigate("/login");
+  };
 
   const navigationItems = ["Home", "Add-Todo", "Register", "Login"];
 
@@ -98,6 +103,9 @@ const NavigationBar = () => {
             </Button>
             <Button color="inherit" component={Link} to="/login">
               Login
+            </Button>
+            <Button color="inherit" onClick={handleLogout}>
+              Logout
             </Button>
           </div>
         )}
