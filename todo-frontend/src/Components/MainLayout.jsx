@@ -1,14 +1,13 @@
-import { Container as MuiContainer } from "@mui/material";
+import { Container } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 
-// MainLayout component
 const MainLayout = () => {
   return (
     <div>
       <NavigationBar />
-      <MuiContainer
+      <Container
         style={{
           display: "flex",
           flexDirection: "column",
@@ -17,8 +16,8 @@ const MainLayout = () => {
           alignItems: "center",
         }}
       >
-        <Outlet /> {/* This is where the child routes will be rendered */}
-      </MuiContainer>
+        <Outlet />
+      </Container>
     </div>
   );
 };
